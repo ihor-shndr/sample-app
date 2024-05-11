@@ -69,8 +69,6 @@ jobs:
 
       - name: Setup .NET Core
         uses: actions/setup-dotnet@v3
-        with:
-          dotnet-version: '6.0.x'
 
       - name: dotnet build and publish
         run: |
@@ -79,7 +77,7 @@ jobs:
           dotnet publish -c Release -o ./
 
       - name: 'Run Azure webapp deploy action'
-        run: az webapp up --name app-svc-mytestapp-prod --os-type linux --runtime "DOTNET:6.0"
+        run: az webapp up --name app-svc-${{ vars.APP_NAME }}-${{ env.ENV }} --os-type linux
   
         # uses: azure/webapps-deploy@v3
         # with: 
