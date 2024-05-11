@@ -1,0 +1,50 @@
+﻿# .NET
+*.obj
+*.dll
+*.exe
+*.pdb
+*.user
+*.aps
+*.pch
+*.vspscc
+*_i.c
+*_p.c
+*.ncb
+*.suo
+*.tlb
+*.tlh
+*.bak
+*.cache
+*.ilk
+*.log
+*.lib
+*.sbr
+*.scc
+[Bb]in
+[Oo]bj
+packages/
+
+# Visual Studio code files
+.vscode/
+
+# Visual Studio files
+*.csproj.user
+*.suo
+*.cache
+*.csproj.nuget.g.props
+*.csproj.nuget.g.targets
+.vs/
+
+# Rider files
+.idea/
+
+# User-specific files
+*.suo
+*.user
+*.userosscache
+*.sln.docstates
+/BookShop/.containers
+
+# Terraform
+.terraform/
+**/backend.conf
