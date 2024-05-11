@@ -79,9 +79,12 @@ jobs:
           dotnet publish -c Release -o ./
 
       - name: 'Run Azure webapp deploy action'
-        uses: azure/webapps-deploy@v3
-        with: 
-          app-name: 'app-svc-mytestapp-prod'
+        run: az webapp up --name app-svc-mytestapp-prod --os-type linux --runtime "DOTNET:6.0"
+  
+        # uses: azure/webapps-deploy@v3
+        # with: 
+        #   app-name: 'app-svc-mytestapp-prod'
+        #   package: .
           
 
       
