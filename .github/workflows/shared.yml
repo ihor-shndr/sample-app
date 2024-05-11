@@ -29,26 +29,26 @@ jobs:
      - name: Checkout the repository to the runner
        uses: actions/checkout@v4
 
-     - name: Create backend.conf file
-       run: |
-         chmod +x ../scripts/create-backend-conf.sh
-         ../scripts/create-backend-conf.sh ${{ vars.APP_NAME }} ${{ env.ENV }} ${{ vars.STORAGE_ACCOUNT }}
+    #  - name: Create backend.conf file
+    #    run: |
+    #      chmod +x ../scripts/create-backend-conf.sh
+    #      ../scripts/create-backend-conf.sh ${{ vars.APP_NAME }} ${{ env.ENV }} ${{ vars.STORAGE_ACCOUNT }}
 
-     - name: Setup Terraform with specified version on the runner
-       uses: hashicorp/setup-terraform@v3
+    #  - name: Setup Terraform with specified version on the runner
+    #    uses: hashicorp/setup-terraform@v3
     
-     - name: Terraform init
-       id: init
-       run: terraform init -backend-config=backend.conf
+    #  - name: Terraform init
+    #    id: init
+    #    run: terraform init -backend-config=backend.conf
 
-     - uses: terraform-linters/setup-tflint@v3
-       name: Setup TFLint
+    #  - uses: terraform-linters/setup-tflint@v3
+    #    name: Setup TFLint
          
-     - name: Run TFLint
-       run: tflint -f compact
+    #  - name: Run TFLint
+    #    run: tflint -f compact
  
-     - name: Terraform Apply
-       run: terraform apply -var env=${{ env.ENV }} -var app_name=${{ vars.APP_NAME }} -auto-approve
+    #  - name: Terraform Apply
+    #    run: terraform apply -var env=${{ env.ENV }} -var app_name=${{ vars.APP_NAME }} -auto-approve
 
   deploy:
     name: 'Build and deploy'
@@ -76,9 +76,9 @@ jobs:
         run: |
           dotnet restore
           dotnet build --configuration Release
-          dotnet publish -c Release -o ./publish
+          dotnet publish -c Release -o ./
 
-      - name: 'Run Azure webapp deploy action using publish profile credentials'
+      - name: 'Run Azure webapp deploy action'
         uses: azure/webapps-deploy@v3
         with: 
           app-name: 'app-svc-mytestapp-prod'
