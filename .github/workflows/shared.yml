@@ -57,7 +57,7 @@ jobs:
     defaults:
       run:
         shell: bash
-        working-directory: ./functions
+        working-directory: ./Sample.API
     steps:
       - name: Azure Login
         uses: azure/login@v1.4.6
@@ -66,6 +66,25 @@ jobs:
 
       - name: Checkout GitHub Action
         uses: actions/checkout@v4
+
+      - name: Setup .NET Core
+        uses: actions/setup-dotnet@v3
+        with:
+          dotnet-version: '6.0.x'
+
+      - name: dotnet build and publish
+        run: |
+          dotnet restore
+          dotnet build --configuration Release
+          dotnet publish -c Release -o ./publish
+
+      - name: 'Run Azure webapp deploy action using publish profile credentials'
+        uses: azure/webapps-deploy@v3
+        with: 
+          app-name: ${{ vars.APP_NAME }}
+          
+
+      
 
           
 
